@@ -1,0 +1,11 @@
+{
+    "name": "New Tab Album Helper",
+    "description": "Helper app for the New Tab Album extension",
+    "version": "0.1",
+    "manifest_version": 2,
+    "app": {
+        "background": {
+            "scripts": ["background.js"]
+        }
+    }
+}

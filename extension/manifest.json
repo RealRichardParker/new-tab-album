@@ -2,13 +2,13 @@
     "name":"Random New Tabs",
     "version":"1.0",
     "description": "Allows the new tab page to be a random photo from an album",
-    "permissions": ["storage", "declarativeContent", "activeTab"],
+    "permissions": ["storage", "declarativeContent", "activeTab", "management"]
     "background": {
       "scripts": ["background.js"],
       "persistent": false
     },
     "chrome_url_overrides": {
-        "newtab": "newTab.html"
+        "newtab": "newtab.html"
     },
  
     "manifest_version": 2
