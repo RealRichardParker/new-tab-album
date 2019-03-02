@@ -10,11 +10,27 @@ chrome.runtime.onMessageExternal.addListener(function (request, sender, sendResp
                 chrome.fileSystem.isRestorable(data.root_dir, function(isRestorable) {
                     if (isRestorable) {
                         chrome.fileSystem.restoreEntry(data.root_dir, function(dirEntry) {
-                            chrome.fileSystem.getDisplayPath(dirEntry, function(path) {
-                                console.log("Root dir path: " + path)
-                                success = true
-                                sendResponse({success: success})
-                            })
+                            let dirReader = dirEntry.createReader()
+                            let entries = []
+                            let readEntries = function () {
+                                dirReader.readEntries(function (results) {
+                                    if(!results.length) {
+                                        let index = Math.floor(Math.random() * Math.floor(entries.length))
+                                        entry = entries[index]
+                                        chrome.fileSystem.getDisplayPath(entry, function(path) {
+                                            success = true
+                                            console.log(index)
+                                            console.log("Sending url " + path)
+                                            sendResponse({success: success, path: path})
+                                        })
+                                    }
+                                    else {
+                                        entries = entries.concat(results)
+                                        readEntries()
+                                    }
+                                })
+                            }
+                            readEntries()
                         }) 
                     }
                     else {
