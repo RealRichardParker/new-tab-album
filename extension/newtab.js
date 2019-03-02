@@ -1,2 +1,6 @@
-//TODO: figure out how this crap works lol
-chrome.management.launchApp("")
+chrome.runtime.sendMessage("micaiedcolefjeeonpaiimdillehjdph", {launch: true}, function(response) {
+    console.log("I got a response yay")
+    console.log("response was " + response.response)
+})
+
+

@@ -2,7 +2,8 @@
     "name":"Random New Tabs",
     "version":"1.0",
     "description": "Allows the new tab page to be a random photo from an album",
-    "permissions": ["storage", "declarativeContent", "activeTab", "management"]
+    "permissions": ["storage", "declarativeContent", "activeTab"],
+    "externally_connectable": {"ids": ["micaiedcolefjeeonpaiimdillehjdph"]},
     "background": {
       "scripts": ["background.js"],
       "persistent": false

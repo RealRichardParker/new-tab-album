@@ -3,6 +3,8 @@
     "description": "Helper app for the New Tab Album extension",
     "version": "0.1",
     "manifest_version": 2,
+    "externally_connectable": {"ids": ["clomjgibbpipfilflnggbpcifdnmeopj"]},
+    "permissions":["fileSystem", "storage"],
     "app": {
         "background": {
             "scripts": ["background.js"]
