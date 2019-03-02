@@ -1,6 +1,7 @@
 chrome.runtime.onMessageExternal.addListener(function (request, sender, sendResponse) {
     console.log("Starting up app!")
     if (request.launch) {
+        let success = false
         chrome.storage.local.get({root_dir: ""}, function(data) {
             if (data.root_dir == "") {
                 console.log("No root dir set!")
@@ -11,25 +12,20 @@ chrome.runtime.onMessageExternal.addListener(function (request, sender, sendResp
                         chrome.fileSystem.restoreEntry(data.root_dir, function(dirEntry) {
                             chrome.fileSystem.getDisplayPath(dirEntry, function(path) {
                                 console.log("Root dir path: " + path)
+                                success = true
+                                sendResponse({success: success})
                             })
                         }) 
                     }
                     else {
                         console.log("root_dir is not restorable, must be reset")
+                        sendResponse({success: success})
                     }
                 })
             }
         })
     }
     if (request.setRoot) {
-        chrome.fileSystem.chooseEntry({type: 'openDirectory'}, function(dirEntry) {
-            let id = chrome.fileSystem.retainEntry(dirEntry)
-            chrome.storage.local.set({root_dir: id}, function() {
-                chrome.fileSystem.getDisplayPath(dirEntry, function(path) {
-                    console.log("Stored id of root dir to " + path)
-                    sendResponse({setRoot: true})
-                })
-            })
-        })
+        chrome.app.window.create("index.html")
     }
 })
