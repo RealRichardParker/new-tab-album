@@ -1,10 +1,11 @@
+let id = ""
+
 window.onload = function() {
     const button = document.getElementById("root")
     button.addEventListener("click", setRoot)
     const output = document.getElementById("output")
     const submit = document.getElementById("submit")
     submit.addEventListener("click", submitSettings)
-    let id = ""
     chrome.storage.local.get({root_dir:""}, function(data) {
         if (data.root_dir != "") {
             console.log("Found a given root dir!")
@@ -44,6 +45,7 @@ function setRoot() {
 }
 
 function submitSettings() {
+    console.log("What is id??" + id)
     if (id !== "") {
         chrome.storage.local.set({root_dir: id}, function() {
             console.log("Saved root_dir")

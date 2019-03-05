@@ -17,6 +17,7 @@ chrome.runtime.onMessageExternal.addListener(function (request, sender, sendResp
                                 dirReader.readEntries(function (results) {
                                     if(!results.length) {
                                         let index = Math.floor(Math.random() * Math.floor(entries.length))
+                                        //TODO: Make recursive
                                         entry = entries[index]
                                         chrome.fileSystem.getDisplayPath(entry, function(path) {
                                             success = true
@@ -51,7 +52,6 @@ chrome.runtime.onMessageExternal.addListener(function (request, sender, sendResp
     if (request.setRoot) {
         chrome.app.window.create("index.html")
         sendResponse({success: success})
-        
     }
 })
 
