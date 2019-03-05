@@ -3,8 +3,8 @@ chrome.runtime.sendMessage("micaiedcolefjeeonpaiimdillehjdph", {launch: true}, f
     console.log("response was " + response.success)
     console.log("got url " + response.path)
     const img = document.createElement("IMG")
-    img.src = response.path
-    document.body.appendChild(img)
+    img.src = response.base64
+    document.body.style.backgroundImage = "url('" + img.src + "')"
 })
 
 

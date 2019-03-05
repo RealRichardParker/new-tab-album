@@ -23,7 +23,7 @@ chrome.runtime.onMessageExternal.addListener(function (request, sender, sendResp
                                                 getBase64(file).then(function(response) {
                                                     console.log(index)
                                                     console.log("Sending url " + response)
-                                                    sendResponse({success: success, path: response})
+                                                    sendResponse({success: success, base64: response, path: path})
 
                                                 })
 
