@@ -19,9 +19,15 @@ chrome.runtime.onMessageExternal.addListener(function (request, sender, sendResp
                                         entry = entries[index]
                                         chrome.fileSystem.getDisplayPath(entry, function(path) {
                                             success = true
-                                            console.log(index)
-                                            console.log("Sending url " + path)
-                                            sendResponse({success: success, path: path})
+                                            entry.file(function (file) {
+                                                getBase64(file).then(function(response) {
+                                                    console.log(index)
+                                                    console.log("Sending url " + response)
+                                                    sendResponse({success: success, path: response})
+
+                                                })
+
+                                            })
                                         })
                                     }
                                     else {
@@ -31,7 +37,7 @@ chrome.runtime.onMessageExternal.addListener(function (request, sender, sendResp
                                 })
                             }
                             readEntries()
-                        }) 
+                        })
                     }
                     else {
                         console.log("root_dir is not restorable, must be reset")
@@ -45,3 +51,12 @@ chrome.runtime.onMessageExternal.addListener(function (request, sender, sendResp
         chrome.app.window.create("index.html")
     }
 })
+
+function getBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+}
