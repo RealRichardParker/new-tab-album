@@ -1,7 +1,7 @@
 chrome.runtime.onMessageExternal.addListener(function (request, sender, sendResponse) {
     console.log("Starting up app!")
+    let success = false
     if (request.launch) {
-        let success = false
         chrome.storage.local.get({root_dir: ""}, function(data) {
             if (data.root_dir == "") {
                 console.log("No root dir set!")
@@ -49,6 +49,8 @@ chrome.runtime.onMessageExternal.addListener(function (request, sender, sendResp
     }
     if (request.setRoot) {
         chrome.app.window.create("index.html")
+        sendResponse({success: success})
+        
     }
 })
 

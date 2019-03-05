@@ -5,6 +5,21 @@ window.onload = function() {
     const submit = document.getElementById("submit")
     submit.addEventListener("click", submitSettings)
     let id = ""
+    chrome.storage.local.get({root_dir:""}, function(data) {
+        if (data.root_dir != "") {
+            id = data.root_dir
+            chrome.fileSystem.isRestorable(id, function(isRestorable) {
+                if (isRestorable) {
+                    chrome.fileSystem.restoreEntry(data.root_dir, function(dirEntry) {
+                        chrome.fileSystem.getDisplayPath(dirEntry, function(path) {
+                            console.log("Loaded path " + path)
+                            output.innerHTML = path
+                        })  
+                    })
+                }
+            })
+        }
+    })
 }
 
 function setRoot() {
