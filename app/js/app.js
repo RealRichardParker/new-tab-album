@@ -7,6 +7,7 @@ window.onload = function() {
     let id = ""
     chrome.storage.local.get({root_dir:""}, function(data) {
         if (data.root_dir != "") {
+            console.log("Found a given root dir!")
             id = data.root_dir
             chrome.fileSystem.isRestorable(id, function(isRestorable) {
                 if (isRestorable) {
@@ -17,7 +18,15 @@ window.onload = function() {
                         })  
                     })
                 }
+                else {
+                    console.log("path is not restorable. Set path again")
+                    output.innerHTML = "Set path again"
+                }
             })
+        }
+        else {
+            console.log("No root dir found")
+            output.innerHTML = "No root folder set!"
         }
     })
 }

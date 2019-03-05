@@ -5,6 +5,7 @@ chrome.runtime.onMessageExternal.addListener(function (request, sender, sendResp
         chrome.storage.local.get({root_dir: ""}, function(data) {
             if (data.root_dir == "") {
                 console.log("No root dir set!")
+                sendResponse({success: success})
             }
             else {
                 chrome.fileSystem.isRestorable(data.root_dir, function(isRestorable) {
