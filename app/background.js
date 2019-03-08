@@ -19,12 +19,16 @@ chrome.runtime.onMessageExternal.addListener(function (request, sender, sendResp
                                         let index = Math.floor(Math.random() * Math.floor(entries.length))
                                         //TODO: Make recursive
                                         entry = entries[index]
+                                        if(entry.isDirectory) {
+                                            console.log("This entry is a dir! Recurse!")
+                                            dirReader = entry.createReader()
+                                            readEntries()
+                                        }
                                         chrome.fileSystem.getDisplayPath(entry, function(path) {
                                             success = true
                                             entry.file(function (file) {
                                                 getBase64(file).then(function(response) {
                                                     console.log(index)
-                                                    console.log("Sending url " + response)
                                                     sendResponse({success: success, base64: response, path: path})
 
                                                 })
