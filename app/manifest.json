@@ -3,11 +3,16 @@
     "description": "Helper app for the New Tab Album extension",
     "version": "0.1",
     "manifest_version": 2,
-    "externally_connectable": {"ids": ["clomjgibbpipfilflnggbpcifdnmeopj"]},
+    "externally_connectable": {"ids": ["imaghalnhleclobdfbejkfgakfolfpjp"]},
     "permissions":[{"fileSystem" : ["directory"]}, "storage"],
     "app": {
         "background": {
             "scripts": ["background.js"]
         }
-    }
+    },
+
+    "icons": {"32": "icon32.png",
+              "64": "icon64.png",
+              "128": "icon128.png"},
+    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAi1p+Za2uZHwUEL3RlAPIp967ju7bGhvepbZD6jnadqo21OpuPYr3CbVHJPiWzQkcRGyeo/6z2GVoHEkAaIxrxK86t0dxPIEBRDzOc8h8PUTKXLzd/R/RhaWg9XALwKXR0nKHbdbN/hHn1fvmWQQZrlMA6MTE1VX1cOP1qzwcs9IsOffB6i1Eofl3BAW+uwdQrpihz53xgQiIO3XEXbdmxLmL7gC5j2Y+H08q2MqGKePsHUuGWZx8pJNn+WjVtVxSxyMXTLqWPwF/LIZ2KIRr5u9u1tPLcigtkmJCuPk2KqloTIJzZj4uKGU+mhCegGiyrLbFOBxHuoHdoSmbyZVVzwIDAQAB"
 }

@@ -1,9 +1,9 @@
 {
-    "name":"Random New Tabs",
+    "name":"New Tab Album",
     "version":"1.0",
     "description": "Allows the new tab page to be a random photo from an album",
     "permissions": ["storage", "declarativeContent", "activeTab"],
-    "externally_connectable": {"ids": ["micaiedcolefjeeonpaiimdillehjdph"]},
+    "externally_connectable": {"ids": ["nnlcbkkamhemebnfgjojcabnomfdfmnh"]},
     "background": {
       "scripts": ["background.js"],
       "persistent": false
@@ -12,6 +12,9 @@
         "newtab": "newtab.html"
     },
     "options_page": "options.html",
- 
+    "icons": {"32": "icon32.png",
+              "64": "icon64.png",
+              "128": "icon128.png"},
+    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4GGq3U5m45oTz7NpEQIn+Rd7lb7lURy/IlnMRqURSlWiwgKGXa6u3daCF8A9M2uasmTumU99RvY4QaxEcCQbHpT45lVa1ksZXCx+g5qRf8HHAA4IzTiArjOu+rA1myLmkSlux15hLsDBLW7GGcXoa92y7IfJxPnYzDXfaIutRJGglgwlPa/k0jm4HmCucnJ+6g9J+VdRcwxzipfRcxGhSbsVCzCsfCOGUI/Pt8AgkOb2hY7+h/BG7cO+8rsouBtYp9ezszx+XL1Erkkkw9O4QOeHFtz3s4JiNM3NoNhhS/oXrCcSciGBaGR7AmNqptO3HfNlS8dO9fNY3NuW+1XGGwIDAQAB",
     "manifest_version": 2
 }
