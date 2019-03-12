@@ -4,7 +4,7 @@
     "version": "0.1",
     "manifest_version": 2,
     "externally_connectable": {"ids": ["imaghalnhleclobdfbejkfgakfolfpjp"]},
-    "permissions":[{"fileSystem" : ["directory"]}, "storage"],
+    "permissions":[{"fileSystem" : ["directory", "retainEntries"]}, "storage"],
     "app": {
         "background": {
             "scripts": ["background.js"]
