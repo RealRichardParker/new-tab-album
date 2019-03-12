@@ -24,18 +24,19 @@ chrome.runtime.onMessageExternal.addListener(function (request, sender, sendResp
                                             console.log("This entry is a dir! Recurse!");
                                             dirReader = entry.createReader();
                                             readEntries();
-                                        }
-                                        chrome.fileSystem.getDisplayPath(entry, function(path) {
-                                            success = true;
-                                            entry.file(function (file) {
-                                                getBase64(file).then(function(response) {
-                                                    console.log(index);
-                                                    sendResponse({success: success, base64: response, path: path});
-
+                                        } 
+                                        else {
+                                            chrome.fileSystem.getDisplayPath(entry, function(path) {
+                                                success = true;
+                                                console.log("using image: " + path)
+                                                entry.file(function (file) {
+                                                    getBase64(file).then(function(response) {
+                                                        console.log(index);
+                                                        sendResponse({success: success, base64: response, path: path});
+                                                    });
                                                 });
-
                                             });
-                                        });
+                                        }
                                     }
                                     else {
                                         entries = entries.concat(results);
